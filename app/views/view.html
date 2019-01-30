@@ -1,0 +1,47 @@
+        <!-- MENU BTNS -->
+         <div id="menuBar">
+        <ul id="menuBtns">
+            <li ng-click="closeWindow()" class="closeBtn"></li>
+            <li class="minimizeBtn"></li>
+            <li class="enlargeBtn"></li>
+        </ul>
+
+        <span class="menuTitle">{{openedTabName}} <span ng-show="opendTab.length">-</span> Curriculum Vitae, Bas van de Pol</span>
+    </div>
+
+        <!-- LEFTBAR -->
+        <div id="leftBar">
+            <strong><span class="barTitle">Work Files</span></strong>
+            <ul>
+                <li ng-class="{selectedMenuItem: selectedView === 'style'}" ng-click="selectView('style', 'personalia.css', 13)" class="selectedFile">personalia.css</li>
+                <li ng-class="{selectedMenuItem: selectedView === 'script'}" ng-click="selectView('script', 'ervaring.js', 86)" class="selectedFile">ervaring.js</li>
+                <li ng-class="{selectedMenuItem: selectedView === 'html'}" ng-click="selectView('html', 'vaardigheden.html', 74)" class="selectedFile">vaardigheden.html</li>
+            </ul>
+        </div>
+        <!-- TABS -->
+        <div id="tabs">
+        	<ul id="tabbed">
+        		<li ng-class="{selectedTabItem: selectedView === tab.type}" ng-repeat="tab in opendTab"><span ng-click="selectView(tab.type, tab.fileName, tab.lineNumbers)">{{tab.fileName}}</span> <i class="fa fa-times" ng-click="closeTab($index)"></i></li>
+        	</ul>
+        </div>
+
+
+        <!-- TEXTSCREEM -->
+        <div id="textScreen">
+            <div id="scrollingWrap">
+            <div id="lineNumbersWrap">
+                <ul id="lineNumbers">
+                   <li ng-repeat="number in lineNumbers">{{number}}</li>
+                </ul>
+            </div>
+            <div id="curriculumContent">
+            	<div ng-if="selectedView === 'initial'" ng-include="'views/partials/intro.html'"></div>
+            	<div ng-if="selectedView === 'style'" ng-include="'views/partials/persona.html'"></div>
+            	<div ng-if="selectedView === 'script'" ng-include="'views/partials/ervaring.html'"></div>
+            	<div ng-if="selectedView === 'html'" ng-include="'views/partials/vaardigheden.html'"></div>
+            </div>
+
+            <div style="clear: both"></div>
+
+        </div>
+</div>
